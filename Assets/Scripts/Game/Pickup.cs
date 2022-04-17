@@ -8,4 +8,14 @@ public class Pickup : MonoBehaviour
     {
 
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Pickup");
+        if (other.gameObject.tag == "Player")
+        {
+            OnPickup();
+            Destroy(gameObject);
+        }
+    }
 }

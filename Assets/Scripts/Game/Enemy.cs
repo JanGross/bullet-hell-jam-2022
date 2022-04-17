@@ -6,12 +6,14 @@ public class Enemy : MonoBehaviour
 {
     public int baseScore;
     public PatternTypes[] patterns;
-    public int CurrentPattern;
+    public int CurrentPattern = 0;
+    private BulletManager bulletManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        bulletManager = GameObject.Find("BulletManager").GetComponent<BulletManager>();
+        Attack();
     }
 
     // Update is called once per frame
@@ -19,10 +21,10 @@ public class Enemy : MonoBehaviour
     {
         
     }
-
+    
     private void Attack()
     {
-        //Spawn pattern
+        bulletManager.SpawnPattern(patterns[CurrentPattern], this);
     }
 
     public void Consumed()
@@ -31,9 +33,14 @@ public class Enemy : MonoBehaviour
     }
 
 
-    private void OnPatternFinished()
+    public void OnPatternFinished()
     {
-        //Increment pattern
+        CurrentPattern++;
+        if (CurrentPattern >= patterns.Length)
+        {
+            //Destroy(gameObject);
+        }
+        Attack();
     }
 
 }

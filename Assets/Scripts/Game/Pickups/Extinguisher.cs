@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class Extinguisher : Pickup
 {
+    public Player player;
+
+    [SerializeField]
+    private float amount;
+    
     public override void OnPickup()
     {
-        throw new System.NotImplementedException();
+        // we have to stop the particle system before making changes
+        ParticleSystem system = player.trail.GetComponent<ParticleSystem>();
+        system.Stop();
+
+        system.startLifetime *= amount;
+
+        system.Play();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

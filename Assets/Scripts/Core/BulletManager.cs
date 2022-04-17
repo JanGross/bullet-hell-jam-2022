@@ -4,14 +4,16 @@ using UnityEngine;
 
 public enum PatternTypes
 {
-    DEFAULT
+    DEFAULT,
+    DOUBLE_SPINNING,
+    QUADRUPLE_SPINNING,
 }
 
 [System.Serializable]
 public class PatternMap
 {
     public PatternTypes patternType;
-    public Pattern pattern;
+    public GameObject pattern;
 }
 public class BulletManager : MonoBehaviour
 {
@@ -31,8 +33,10 @@ public class BulletManager : MonoBehaviour
         
     }
 
-    public Pattern SpawnPattern(PatternTypes pattern)
+    public void SpawnPattern(PatternTypes pattern, Enemy enemy)
     {
-        return null;
+        GameObject patternObject = Instantiate(PatternMap.Find(x => x.patternType == pattern).pattern, enemy.transform.position, Quaternion.identity);
+        Pattern patternScript = patternObject.GetComponent<Pattern>();
+        patternScript.enemy = enemy;
     }
 }

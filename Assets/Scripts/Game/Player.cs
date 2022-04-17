@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
 {
     public float health;
     public float speed;
-    public float trailLength;
     public GameObject trail;
     public float rotationSpeed;
     public float direction;
@@ -40,13 +39,26 @@ public class Player : MonoBehaviour
         if (isLit)
         {
             health -= 100.0f * Time.deltaTime;
-            Debug.Log("Health: " + health);
         }
+
+        //if health below 0 die
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+
+
+        /* Todo: Improve player movement 
+         * Turning doesn't feel right, should be snappier
+         */ 
+        
 
         //move player forward
         transform.position += transform.forward * speed * Time.deltaTime;
         //rotate based on direction
         transform.Rotate(0, direction * rotationSpeed * 2 * Time.deltaTime, 0);
+
+        
 
         float horzExtent = camera.orthographicSize * Screen.width / Screen.height;
         float vertExtent = camera.orthographicSize;
@@ -83,6 +95,14 @@ public class Player : MonoBehaviour
     
     private void OnParticleCollision(GameObject other)
     {
+        Debug.Log("Particle Collision" + other.name);
+        ParticleSystem ps = trail.GetComponent<ParticleSystem>();
+        ps.Stop();
+        //TODO: refactor magic number to a variable or constant 
+        ps.startLifetime += 2;
+        ps.Play();
+
+
         if (other == trail)
         {
             //Debug.Log(other.name);
