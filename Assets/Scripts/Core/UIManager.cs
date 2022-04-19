@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI playerHealthLabel;
     public TextMeshProUGUI gameOverLabel;
+    public TextMeshProUGUI scoreLabel;
+
     public Button restartButton;
     private  GameManager gameManager;
 
@@ -23,11 +25,12 @@ public class UIManager : MonoBehaviour
         //round player health 
         playerHealthLabel.text = "Health: " + Mathf.Round(gameManager.player.health).ToString();
 
+        scoreLabel.text = "Score: " + Mathf.Round(gameManager.score).ToString();
+
         if (gameManager.player.health <= 0)
         {
             gameOverLabel.gameObject.SetActive(true);
             restartButton.gameObject.SetActive(true);
-
         }
     }
 }

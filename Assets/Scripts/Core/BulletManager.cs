@@ -21,16 +21,23 @@ public class BulletManager : MonoBehaviour
     public List<PatternMap> PatternMap = new List<PatternMap>();
     public Pattern[] activePatterns;
 
+    private GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void EnemyConsumed(float multiplier)
+    {
+        gameManager.EnemyConsumed(multiplier);
     }
 
     public void SpawnPattern(PatternTypes pattern, Enemy enemy)

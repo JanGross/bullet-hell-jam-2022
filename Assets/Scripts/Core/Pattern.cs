@@ -20,7 +20,7 @@ public class Pattern : MonoBehaviour
     {
         OnPatternUpdate();
         duration -= Time.deltaTime;
-        if (duration <= 0)
+        if (duration <= 0 || enemy.IsDead)
         {
             //find all particle systems in children and stop them
             foreach (ParticleSystem ps in GetComponentsInChildren<ParticleSystem>())

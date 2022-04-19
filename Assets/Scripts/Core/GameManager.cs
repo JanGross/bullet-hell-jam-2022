@@ -31,9 +31,13 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void EnemyConsumed()
+    public void EnemyConsumed(float multiplier = 0)
     {
+        enemiesConsumed++;
 
+        float incMutliplier = (multiplier > 0) ? multiplier : scoreMultiplier;
+
+        score += Mathf.FloorToInt(50 * incMutliplier); // TODO: how do we want this to work exactly?
     }
 
     public void PlayerDed()
