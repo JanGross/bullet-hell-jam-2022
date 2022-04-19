@@ -26,7 +26,7 @@ public class BulletFreezeRemove : Pickup
             GameObject root = particleSystem.transform.root.gameObject;
             if (!root.GetComponent<Pattern>())
             {
-                return;
+                continue;
             }
            
             int particleCount = particleSystem.particleCount;

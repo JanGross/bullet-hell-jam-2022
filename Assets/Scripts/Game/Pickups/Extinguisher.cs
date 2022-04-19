@@ -21,7 +21,7 @@ public class Extinguisher : Pickup
 
         for (int i = 0; i < particleCount; i++)
         {
-            if (particles[i].remainingLifetime < particleSystem.main.startLifetime.constant * 0.5f)
+            if (particles[i].remainingLifetime < particles[i].startLifetime * 0.95f)
             {
                 particles[i].remainingLifetime = 0.0f;
             }
@@ -37,7 +37,7 @@ public class Extinguisher : Pickup
 
         for (int i = 0; i < count; i+=20)
         {
-            if (particles[i].remainingLifetime < system.main.startLifetime.constant * 0.5f)
+            if (particles[i].remainingLifetime < particles[i].startLifetime * 0.95f)
             {
                 //instantiate freeze particles at the position of the particle
                 Instantiate(extinguishEffect, particles[i].position, Quaternion.identity);
