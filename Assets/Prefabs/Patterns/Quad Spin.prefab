@@ -867,7 +867,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 8
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -3805,12 +3805,7 @@ ParticleSystem:
   SubModule:
     serializedVersion: 2
     enabled: 0
-    subEmitters:
-    - serializedVersion: 3
-      emitter: {fileID: 0}
-      type: 0
-      properties: 0
-      emitProbability: 1
+    subEmitters: []
   LightsModule:
     enabled: 0
     ratio: 0
@@ -5679,7 +5674,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 8
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -8618,12 +8613,7 @@ ParticleSystem:
   SubModule:
     serializedVersion: 2
     enabled: 0
-    subEmitters:
-    - serializedVersion: 3
-      emitter: {fileID: 0}
-      type: 0
-      properties: 0
-      emitProbability: 1
+    subEmitters: []
   LightsModule:
     enabled: 0
     ratio: 0
@@ -9677,7 +9667,7 @@ MonoBehaviour:
   duration: 798987
   notified: 0
   enemy: {fileID: 0}
-  speed: 100
+  speed: 50
 --- !u!1 &7681109217013036522
 GameObject:
   m_ObjectHideFlags: 0
@@ -10545,7 +10535,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 8
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -13483,12 +13473,7 @@ ParticleSystem:
   SubModule:
     serializedVersion: 2
     enabled: 0
-    subEmitters:
-    - serializedVersion: 3
-      emitter: {fileID: 0}
-      type: 0
-      properties: 0
-      emitProbability: 1
+    subEmitters: []
   LightsModule:
     enabled: 0
     ratio: 0
@@ -15357,7 +15342,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 8
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -18295,12 +18280,7 @@ ParticleSystem:
   SubModule:
     serializedVersion: 2
     enabled: 0
-    subEmitters:
-    - serializedVersion: 3
-      emitter: {fileID: 0}
-      type: 0
-      properties: 0
-      emitProbability: 1
+    subEmitters: []
   LightsModule:
     enabled: 0
     ratio: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Extinguisher : Pickup
 {
+    public ParticleSystem extinguishEffect;
     public Player player;
 
     [SerializeField]
@@ -11,13 +12,38 @@ public class Extinguisher : Pickup
     
     public override void OnPickup()
     {
-        // we have to stop the particle system before making changes
-        ParticleSystem system = player.trail.GetComponent<ParticleSystem>();
-        system.Stop();
+        ParticleSystem particleSystem = player.trail.GetComponent<ParticleSystem>();
+        
+        int particleCount = particleSystem.particleCount;
+        ParticleSystem.Particle[] particles = new ParticleSystem.Particle[particleCount];
+        particleSystem.GetParticles(particles);
+        
 
-        system.startLifetime *= amount;
+        for (int i = 0; i < particleCount; i++)
+        {
+            if (particles[i].remainingLifetime < particleSystem.main.startLifetime.constant * 0.5f)
+            {
+                particles[i].remainingLifetime = 0.0f;
+            }
+            //instantiate freeze particles at the position of the particle
+        }
+        particleSystem.SetParticles(particles, particleCount);
+        
+        StartCoroutine(SpawnEffectsCoroutine(particles, particleCount, particleSystem));
+    }
+    
+    IEnumerator SpawnEffectsCoroutine(ParticleSystem.Particle[] particles, int count, ParticleSystem system)
+    {
 
-        system.Play();
+        for (int i = 0; i < count; i+=20)
+        {
+            if (particles[i].remainingLifetime < system.main.startLifetime.constant * 0.5f)
+            {
+                //instantiate freeze particles at the position of the particle
+                Instantiate(extinguishEffect, particles[i].position, Quaternion.identity);
+                yield return null;
+            }
+        }
     }
 
     // Start is called before the first frame update
