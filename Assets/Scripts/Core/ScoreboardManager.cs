@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScoreboardManager : MonoBehaviour
@@ -117,5 +118,13 @@ public class ScoreboardManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void RestartGame()
+    {
+        GameObject gm = GameObject.Find("GameManager");
+        Destroy(gm);
+
+        SceneManager.LoadScene("menu");
     }
 }
