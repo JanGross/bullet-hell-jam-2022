@@ -119,11 +119,11 @@ public class Player : MonoBehaviour
     
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("Particle Collision" + other.name);
+        //Debug.Log("Particle Collision" + other.name);
         ParticleSystem ps = trail.GetComponent<ParticleSystem>();
         ps.Stop();
         //TODO: refactor magic number to a variable or constant 
-        ps.startLifetime += 2;
+        ps.startLifetime += 0.08f;
         ps.Play();
 
 
