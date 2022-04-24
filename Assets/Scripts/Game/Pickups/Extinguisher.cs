@@ -12,12 +12,15 @@ public class Extinguisher : Pickup
     
     public override void OnPickup()
     {
+        //hide renderer
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
+
         ParticleSystem particleSystem = player.trail.GetComponent<ParticleSystem>();
         
         int particleCount = particleSystem.particleCount;
         ParticleSystem.Particle[] particles = new ParticleSystem.Particle[particleCount];
         particleSystem.GetParticles(particles);
-        
 
         for (int i = 0; i < particleCount; i++)
         {

@@ -14,7 +14,7 @@ public class BulletFreezeRemove : Pickup
     public override void OnPickup()
     {
         //hide renderer
-        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
         Debug.Log("Start thingy");
         //find all particles in the scene and freeze them
