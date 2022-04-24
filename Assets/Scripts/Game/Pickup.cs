@@ -27,6 +27,8 @@ public class Pickup : MonoBehaviour
         string className = this.GetType().ToString();
         GUI.color = Color.blue;
 
-        UnityEditor.Handles.Label(transform.position, className);
+        #if UNITY_EDITOR
+            UnityEditor.Handles.Label(transform.position, className);
+        #endif
     }
 }
