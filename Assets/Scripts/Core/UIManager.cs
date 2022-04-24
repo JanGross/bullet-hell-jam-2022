@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI waveLabel;
 
     public Button restartButton;
+    public Button scoreboardButton;
     private  GameManager gameManager;
 
     // Start is called before the first frame update
@@ -34,6 +35,7 @@ public class UIManager : MonoBehaviour
         {
             gameOverLabel.gameObject.SetActive(true);
             restartButton.gameObject.SetActive(true);
+            scoreboardButton.gameObject.SetActive(true);
         }
     }
 }

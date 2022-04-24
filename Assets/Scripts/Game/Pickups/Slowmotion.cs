@@ -15,6 +15,7 @@ public class Slowmotion : Pickup
         Time.timeScale = Time.timeScale * slowFactor;
     }
 
+    
     // Update is called once per frame
     void Update()
     {

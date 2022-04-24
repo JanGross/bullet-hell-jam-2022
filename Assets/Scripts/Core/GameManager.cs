@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //dont destroy on load
+        DontDestroyOnLoad(this.gameObject);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         StartWave();
@@ -110,5 +112,10 @@ public class GameManager : MonoBehaviour
         //get active scene and reload it 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         
+    }
+
+    public void OpenScoreboard()
+    {
+        SceneManager.LoadScene("Scoreboard");
     }
 }
