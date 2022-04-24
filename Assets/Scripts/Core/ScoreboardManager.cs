@@ -71,12 +71,14 @@ public class ScoreboardManager : MonoBehaviour
             if (www.result != UnityWebRequest.Result.Success)
             {
                 Debug.Log(www.error);
+                btnSubmit.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Error :(";
             }
             else
             {
                 Debug.Log("Score submitted");
                 btnSubmit.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Submitted!";
                 submitted = true;
+                StartCoroutine(GetScores());
             }
         }
     }
@@ -88,22 +90,24 @@ public class ScoreboardManager : MonoBehaviour
             // Request and wait for the desired page.
             yield return webRequest.SendWebRequest();
 
-            
+            globalNames.text = "";
+            globalScores.text = "";
 
             switch (webRequest.result)
             {
                 case UnityWebRequest.Result.ConnectionError:
                 case UnityWebRequest.Result.DataProcessingError:
                     Debug.LogError("Error: " + webRequest.error);
+                    globalNames.text = "Error: " + webRequest.error;
                     break;
                 case UnityWebRequest.Result.ProtocolError:
                     Debug.LogError("HTTP Error: " + webRequest.error);
+                    globalNames.text = "Error: " + webRequest.error;
                     break;
                 case UnityWebRequest.Result.Success:
                     Debug.Log("Received: " + webRequest.downloadHandler.text);
                     Scores scores = JsonUtility.FromJson<Scores>("{\"scores\":" + webRequest.downloadHandler.text + "}");
-                    globalNames.text = "";
-                    globalScores.text = "";
+                   
                     foreach (Score score in scores.scores)
                     {
                         globalNames.text += score.username + "\n";
