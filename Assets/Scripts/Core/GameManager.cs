@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public MusicManager musicManager;
     public Player player;
     public GameObject[] pickups;
+    public AudioSource enemyConsumedSfx;
 
     [Header("Timing")]
     public float pickupDelay;
@@ -57,6 +58,10 @@ public class GameManager : MonoBehaviour
 
     public void StartWave()
     {
+
+        //increase player speed
+        player.speed += player.speedIncrease;
+        
         if (wave >= waves.Count)
         {
             wave = 0;
@@ -84,7 +89,10 @@ public class GameManager : MonoBehaviour
 
                 Vector3 spawnPos = new Vector3(spawnX, player.gameObject.transform.position.y, spawnZ);
 
-                GameObject obj = Instantiate(currentWave.enemies[i].gameObject, spawnPos, Quaternion.identity, enemyHolder.transform);
+                //vector3 to quaternion 
+                Quaternion spawnRot = Quaternion.Euler(90, 0, 0);
+
+                GameObject obj = Instantiate(currentWave.enemies[i].gameObject, spawnPos, spawnRot, enemyHolder.transform);
                 obj.SetActive(true);
             }
         }
@@ -95,6 +103,8 @@ public class GameManager : MonoBehaviour
         enemiesConsumed++;
 
         IncrementScore(10, multiplier);
+        //play enemy consumed sound
+        enemyConsumedSfx.Play();
 
         if (enemiesConsumed == currentWave.enemies.Count)
         {
