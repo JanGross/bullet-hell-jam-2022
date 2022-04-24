@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
 
         scoreLabel.text = "Score: " + Mathf.Round(gameManager.score).ToString();
 
-        waveLabel.text = "Wave: " + (gameManager.wave + 1).ToString();
+        waveLabel.text = "Wave: " + (gameManager.overallWave + 1).ToString();
 
         if (gameManager.player.health <= 0)
         {

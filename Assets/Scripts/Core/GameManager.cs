@@ -26,10 +26,14 @@ public class GameManager : MonoBehaviour
     public float pickupDelay;
     public float scoreMultiplier;
 
+    public int overallWave = 0;
+
     public List<Wave> waves;
     public GameObject enemyHolder;
     private Wave currentWave;
 
+    private float SPAWN_DROP_TIME = 10;
+    private float lastSpawnTime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -44,11 +48,20 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Time.time - lastSpawnTime > SPAWN_DROP_TIME)
+        {
+            lastSpawnTime = Time.time;
+            SpawnPickup();
+        }
     }
 
     public void StartWave()
     {
+        if (wave >= waves.Count)
+        {
+            wave = 0;
+        }
+
         Wave current = waves[wave];
         if (current != null)
         {
@@ -71,7 +84,8 @@ public class GameManager : MonoBehaviour
 
                 Vector3 spawnPos = new Vector3(spawnX, player.gameObject.transform.position.y, spawnZ);
 
-                Instantiate(currentWave.enemies[i].gameObject, spawnPos, Quaternion.identity, enemyHolder.transform);
+                GameObject obj = Instantiate(currentWave.enemies[i].gameObject, spawnPos, Quaternion.identity, enemyHolder.transform);
+                obj.SetActive(true);
             }
         }
     }
@@ -86,9 +100,20 @@ public class GameManager : MonoBehaviour
         {
             // wave over... start next wave
             wave++;
+            overallWave++;
             StartWave();
-
         }
+    }
+
+    public void SpawnPickup()
+    {
+        GameObject pickup = pickups[Random.Range(0, pickups.Length)];
+
+        float spawnZ = Random.Range(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).z, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).z);
+        float spawnX = Random.Range(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x, Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x);
+
+        GameObject ins = Instantiate(pickup);
+        ins.transform.position = new Vector3(spawnX, player.transform.position.y, spawnZ);
     }
 
     public void PlayerDed()
@@ -109,6 +134,8 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        Destroy(gameObject);
+
         //get active scene and reload it 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         
