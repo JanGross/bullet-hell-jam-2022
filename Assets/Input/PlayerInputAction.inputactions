@@ -11,7 +11,7 @@
                     "id": "f1ff6d89-1124-48d9-adeb-4d2611c44344",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": true
                 }
             ],
@@ -30,10 +30,10 @@
                 {
                     "name": "up",
                     "id": "8b49146a-0d04-45f9-80ae-efa389d56678",
-                    "path": "",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Main Control Scheme",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -41,10 +41,10 @@
                 {
                     "name": "down",
                     "id": "8ea7eec0-0813-46aa-8c78-db89e7c46877",
-                    "path": "",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Main Control Scheme",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
