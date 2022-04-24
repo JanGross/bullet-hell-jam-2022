@@ -39,6 +39,9 @@ public class ScoreboardManager : MonoBehaviour
         //set current score
         currentScore.text = gm.score.ToString();
         playerScore = gm.score;
+
+        //disable gamemanager
+        gm.enabled = false;
     }
 
     // Update is called once per frame

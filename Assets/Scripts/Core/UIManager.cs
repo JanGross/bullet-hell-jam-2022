@@ -7,9 +7,13 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI playerHealthLabel;
-    public TextMeshProUGUI gameOverLabel;
+    public GameObject gameOverPanel;
     public TextMeshProUGUI scoreLabel;
     public TextMeshProUGUI waveLabel;
+
+    public GameObject healthContainer;
+    
+    public Image healthBar;
 
     public Button restartButton;
     public Button scoreboardButton;
@@ -24,6 +28,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        healthBar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, gameManager.player.health * 3);
         //round player health 
         playerHealthLabel.text = "Health: " + Mathf.Round(gameManager.player.health).ToString();
 
@@ -33,9 +38,18 @@ public class UIManager : MonoBehaviour
 
         if (gameManager.player.health <= 0)
         {
-            gameOverLabel.gameObject.SetActive(true);
+            Debug.Log("Game Over");
+            gameOverPanel.SetActive(true);
             restartButton.gameObject.SetActive(true);
             scoreboardButton.gameObject.SetActive(true);
+        }
+
+        if (gameManager.player.health <= 15)
+        {
+            //play animation on healthContainer
+            healthContainer.GetComponent<Animation>().Play();
+            
+            
         }
     }
 }

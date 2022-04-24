@@ -15,6 +15,9 @@ public class NoTrail : Pickup
 
     public override void OnPickup()
     {
+        //hide sprite renderer
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        
         player.trail.SetActive(false);
 
     }

@@ -13,6 +13,9 @@ public class Slowmotion : Pickup
         Debug.Log("Slowmotion");
         isSlow = true;
         Time.timeScale = Time.timeScale * slowFactor;
+
+        //disable sprite renderer
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 
     

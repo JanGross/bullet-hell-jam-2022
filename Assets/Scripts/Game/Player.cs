@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float rotationSpeed;
     public float direction;
     public List<ParticleCollisionEvent> collisionEvents;
+    public float speedIncrease;
     public bool isLit;
 
     public Camera camera;
@@ -58,8 +59,10 @@ public class Player : MonoBehaviour
         //mousePos.y = transform.position.y;
         //transform.LookAt(mousePos);
 
+
         //if isLit decrease health
-        if (isLit)
+        //Invincible for the first 2 seconds to avoid particle collision bug
+        if (isLit && Time.timeSinceLevelLoad > 2)
         {
             health -= 100.0f * Time.deltaTime;
         }
