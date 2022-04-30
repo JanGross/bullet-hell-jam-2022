@@ -17,8 +17,10 @@ public class ParticleTest : MonoBehaviour
         
     }
 
+
     private void OnParticleCollision(GameObject other)
     {
         Debug.Log(other);
+        
     }
 }
