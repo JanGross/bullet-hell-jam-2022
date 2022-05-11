@@ -68,7 +68,7 @@ public class ScoreboardManager : MonoBehaviour
         form.AddField("username", username);
         form.AddField("score", playerScore);
         form.AddField("additional_data", additional_data);
-        using (UnityWebRequest www = UnityWebRequest.Post("http://vps5.minzkraut.com:3030/scores", form))
+        using (UnityWebRequest www = UnityWebRequest.Post("https://bhj22sb.minzkraut.com/scores", form))
         {
             yield return www.SendWebRequest();
 
@@ -89,7 +89,7 @@ public class ScoreboardManager : MonoBehaviour
     
     IEnumerator GetScores()
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get("http://vps5.minzkraut.com:3030/scores"))
+        using (UnityWebRequest webRequest = UnityWebRequest.Get("https://bhj22sb.minzkraut.com/scores"))
         {
             // Request and wait for the desired page.
             yield return webRequest.SendWebRequest();
