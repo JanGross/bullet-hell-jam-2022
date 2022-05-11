@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public List<ParticleCollisionEvent> collisionEvents;
     public float speedIncrease;
     public bool isLit;
+    public AudioSource damageSfx;
 
     public Camera camera;
     
@@ -65,6 +66,7 @@ public class Player : MonoBehaviour
         if (isLit && Time.timeSinceLevelLoad > 2)
         {
             health -= 100.0f * Time.deltaTime;
+            damageSfx.Play();
         }
 
         //if health below 0 die
